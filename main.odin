@@ -5,22 +5,21 @@ import rl "vendor:raylib"
 
 main :: proc() {
 	rl.InitWindow(800, 400, "Hello, World")
-	points: [3]rl.Vector3 = {{0, 0, 0}, {1, 0, 0}, {1, 1, 0}}
-	members: [3][2]int = {{0, 1}, {1, 2}, {0, 2}}
+	points: []rl.Vector3 = {{0, 0, 0}, {1, 0, 0}, {1, 1, 0}, {1, 0, 1}}
+	members: [][2]int = {{0, 1}, {1, 2}, {0, 2}, {0, 3}, {1, 3}, {2, 3}}
 
 	camera := rl.Camera3D {
 		position   = {1, 0.5, 1},
 		target     = {0, 0, 0},
 		up         = {0, 1, 0},
-		fovy       = 10,
+		fovy       = 2,
 		projection = .ORTHOGRAPHIC,
 	}
 
-	rl.DisableCursor()
 	rl.SetTargetFPS(60)
 
 	for !rl.WindowShouldClose() {
-		rl.UpdateCameraPro(&camera, {}, {}, {})
+		rl.UpdateCamera(&camera, .ORBITAL)
 
 		rl.BeginDrawing()
 
@@ -35,6 +34,7 @@ main :: proc() {
 		rl.EndMode3D()
 
 		rl.DrawText("Hello, World", 20, 20, 10, rl.BLACK)
+		rl.DrawGrid(10, 1)
 
 		rl.EndDrawing()
 	}
