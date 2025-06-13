@@ -9,10 +9,10 @@ Window {
     title: "Hello World"
 
     readonly property list<string> texts: ["Hallo Welt", "Hei maailma",
-                                           "Hola Mundo", "Привет мир"]
+                                           "Hola Mundo", "Привет мир", "こんにちは世界"]
 
     function setText() {
-        var i = Math.round(Math.random() * 3)
+        var i = Math.round(Math.random() * 4)
         text.text = texts[i]
     }
 
